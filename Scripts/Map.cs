@@ -12,16 +12,22 @@ public class Map : MonoBehaviour {
 
     public Overlord.EventTypes[] events;
 
+    public ItemDisplay[] itemsUI;
+    public ItemTooltip itemTooltip;
+
+    public Text hpText;
+    public Text insanityText;
+
     Overlord _o;
     System.Random rng = new System.Random(System.DateTime.Now.Millisecond + 3);
 
     private void Start()
     {
-        _o = FindObjectOfType<Overlord>();
+        _o = Overlord._instance;
 
-        if (_o.enemyLevel % 10 == 0)
+        if (_o.eventsCompleted % 10 == 0 && _o.eventsCompleted != 0)
         {
-            locations[rng.Next(locations.Length)].locationEvent = Overlord.EventTypes.BOSS_FIGHT;
+            locations[rng.Next(locations.Length)].SetEvent( _o.CreateEvent(_o.bossFights) );
         }
         else
         {
@@ -32,13 +38,33 @@ public class Map : MonoBehaviour {
 
                 for (int j = 0; j < locations.Length; j++)
                 {
-                    if (locations[c].locationEvent != Overlord.EventTypes.NONE) continue;
+                    if (locations[c].locationEvent != null) continue;
 
-                    locations[c].SetEvent(events[rng.Next(events.Length)]);
+                    Overlord.EventTypes et = events[rng.Next(events.Length)];
+                    locations[c].SetEvent( _o.GetRandomEvent(et) );
                     break;
                 }
             }
         }
 
+        hpText.text = "HP: " + PlayerPrefs.GetInt("player_health", 100).ToString();
+        insanityText.text = "Insanity: " + _o.enemyLevel;
+
+        for (int i = 0; i < itemsUI.Length; i++)
+        {
+            if (i < _o.inventory.Count)
+            {
+                itemsUI[i].enabled = true;
+                itemsUI[i].item = _o.inventory[i];
+                itemsUI[i].tooltip = itemTooltip;
+                Image img = itemsUI[i].gameObject.GetComponent<Image>();
+                img.sprite = _o.inventory[i].artwork;
+                img.color = Color.white;
+            }
+            else
+            {
+                itemsUI[i].enabled = false;
+            }
+        }
     }
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae9d1b0b928ae5428c9adf9170e2628, type: 3}
+  m_Name: S Blob
+  m_EditorClassIdentifier: 
+  name: Blob
+  description: 
+  artwork: {fileID: 21300010, guid: 6cc51bffcae356746ac4fdb3bc128605, type: 3}
+  health: 120
+  strength: 1
+  energy: 5
+  healthGrow: 5
+  strengthGrow: 1
+  energyGrow: 3
+  abilities:
+  - {fileID: 11400000, guid: fe3916faea3a33744987bd71c5be6db9, type: 2}
+  - {fileID: 11400000, guid: bba9fb0ba3c35e8498e219c8f99f3807, type: 2}
+  - {fileID: 11400000, guid: c08aed0ce65d50245b909c520ac4994c, type: 2}

@@ -11,11 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd44c6cb9840a694c93cf4d1007f519c, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  name: Axe
-  description: A heavy weapon for heavy attacks.
-  artwork: {fileID: 0}
+  name: Viking axe
+  description: This ornated viking axe has seen a lot of battles. It allows you to
+    perform a heavy attack.
+  artwork: {fileID: 21300000, guid: a3206a799722f8941b759e883cdfa0bb, type: 3}
   cost: 20
-  stats: []
+  stats:
+    health: 0
+    strength: 0
+    endurance: 0
+    energy: 0
+    resilience: 0
   abilities:
   - ability: {fileID: 11400000, guid: 3337d80289aa1ad499c776c5e1489f22, type: 2}
   cards:

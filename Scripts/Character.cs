@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
+    const int _SHAKE_CYCLES_ = 2;
+    protected const float _SHAKE_TIME_ = 0.3f;
+    const float _SHAKE_WIDTH_ = 4f;
 
     [Header("Character Stats")]
     public int health = 100;
@@ -23,10 +26,23 @@ public class Character : MonoBehaviour {
     public Text hpText;
     public Text shieldText;
 
+    protected Transform _model;
+    protected float timer = 0;
+
     protected virtual void Start()
     {
+        _model = this.transform.Find("Model");
         hpText.text = "HP: " + health.ToString();
         RefreshShieldText();
+    }
+
+    protected virtual void Update()
+    {
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Shake();
+        }
     }
 
     // TODO: Refine Attack and Defense
@@ -72,12 +88,12 @@ public class Character : MonoBehaviour {
 
     public virtual void StartTurn()
     {
-
+        this.shield = 0;
+        RefreshShieldText();
     }
 
     public void EndTurn()
     {
-        this.shield = 0;
     }
 
     public void ActivateAbility(Ability h, Character target)
@@ -86,6 +102,7 @@ public class Character : MonoBehaviour {
         this.shield += GetShield(h);
 
         RefreshShieldText();
+        timer = _SHAKE_TIME_;
     }
 
     public int GetDamage(Ability h)
@@ -110,5 +127,16 @@ public class Character : MonoBehaviour {
     {
         if (shield <= 0) shieldText.text = "";
         else shieldText.text = "Shield: " + shield.ToString();
+    }
+
+    public virtual string GetName()
+    {
+        return this.name;
+    }
+
+    protected virtual void Shake()
+    {
+        if (timer < 0) timer = 0;
+        _model.localPosition = _SHAKE_WIDTH_ * Mathf.Sin(_SHAKE_CYCLES_ * 2 * Mathf.PI * timer / _SHAKE_TIME_) * Vector3.right;
     }
 }

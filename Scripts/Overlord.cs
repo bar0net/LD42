@@ -4,26 +4,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Overlord : MonoBehaviour {
+    public const float _SELL_RATIO_ = 1.2f;
+
     // DATA STRUCTURES
     public enum EventTypes { NONE, SENTINEL_FIGHT, MINIBOSS_FIGHT, BOSS_FIGHT, TREASURE, MISTERY, MERCHANT }
 
     [System.Serializable]
-    public struct FightingEvent
+    public class EventData
     {
+        public EventTypes type;
         public int minLevel;
         public int maxLevel;
         public EnemyData[] enemies;
+        public Item[] rewards;
     }
 
     // Singleton
     public static Overlord _instance;
 
+    // Player Stats
+    [HideInInspector] public int enemiesKilled = 0;
+    [HideInInspector] public int eventsCompleted = 0;
+    [HideInInspector] public int itemsCollected = 0;
 
-    [Header("Enemy Parameters")]
     public int enemyLevel = 1;
-    public FightingEvent[] sentinelFights;
-    public FightingEvent[] bossFights;
-    public FightingEvent[] MiniBossFights;
+    [Header("Event Types")]
+    public EventData[] sentinelFights;
+    public EventData[] bossFights;
+    public EventData[] MiniBossFights;
+    public EventData[] merchantEvent;
+    public EventData[] treasureEvent;
+    public EventData[] misteryEvent;
 
     [Header("Card Management")]
     // List of playable cards owned by the player
@@ -36,8 +47,9 @@ public class Overlord : MonoBehaviour {
     public int inventorySlots = 7;
     public List<Item> inventory;
 
-    [HideInInspector]
-    public EnemyData[] enemies;
+    //public EnemyData[] enemies;
+    [SerializeField]
+    public EventData currentEvent = null;
 
     System.Random rng;
 
@@ -53,55 +65,63 @@ public class Overlord : MonoBehaviour {
         rng = new System.Random();
 
         // If there are items in the inventory, add Cards to the collection if necessary.
-        foreach (Item item in inventory)
+        for (int i = 0; i < inventory.Count; i++)
         {
-            for (int i = 0; i < item.cards.Length; i++) collection.Add(item.cards[i]);
+            Item item = inventory[i];
+            for (int j = 0; j < item.cards.Length; j++) collection.Add(item.cards[j]);
         }
+
+        currentEvent = null;
     }
 
     // Select the enemies for a fight
-    public EnemyData[] LoadFight(FightingEvent[] fightList)
+    public EventData CreateEvent(EventData[] eventList)
     {
-        List<FightingEvent> fights = new List<FightingEvent>();
+        if (eventList.Length == 0) return null;
 
-        foreach (FightingEvent f in fightList)
+        List<EventData> events = new List<EventData>();
+
+        foreach (EventData f in eventList)
         {
             if (enemyLevel < f.minLevel || enemyLevel > f.maxLevel) continue;
-            fights.Add(f);
+            events.Add(f);
         }
 
-        if (fights.Count <= 0) return sentinelFights[rng.Next(sentinelFights.Length)].enemies;
-        else return fights[rng.Next(fights.Count)].enemies;
+        if (events.Count <= 0) return eventList[rng.Next(eventList.Length)];
+        else return events[rng.Next(events.Count)];
     }
 
 
     // Manage Events
-    public void LoadEvent(EventTypes type)
+    public void LoadEvent(EventData data)
     {
-        switch (type)
+        if (data == null) return;
+        currentEvent = data;
+
+        switch (data.type)
         {
             case EventTypes.BOSS_FIGHT:
-                enemies = LoadFight(bossFights);
                 SceneManager.LoadScene("Fight");
                 break;
 
             case EventTypes.MERCHANT:
+                SceneManager.LoadScene("Merchant");
                 break;
 
             case EventTypes.MINIBOSS_FIGHT:
-                enemies = LoadFight(MiniBossFights);
                 SceneManager.LoadScene("Fight");
                 break;
 
             case EventTypes.MISTERY:
+                SceneManager.LoadScene("Mistery");
                 break;
 
             case EventTypes.SENTINEL_FIGHT:
-                enemies = LoadFight(sentinelFights);
                 SceneManager.LoadScene("Fight");
                 break;
 
             case EventTypes.TREASURE:
+                SceneManager.LoadScene("Treasure");
                 break;
         }
     }
@@ -110,6 +130,8 @@ public class Overlord : MonoBehaviour {
     {
         if (inventory.Count < inventorySlots)
         {
+            itemsCollected += 1;
+            inventory.Add(item);
             for (int i = 0; i < item.cards.Length; i++) collection.Add(item.cards[i]);
         }
         else
@@ -124,9 +146,34 @@ public class Overlord : MonoBehaviour {
         inventory.Remove(item);
     }
 
-    void LoseItem(Item item)
+    public void LoseItem(Item item)
     {
-
+        enemyLevel += item.cost;
     }
 
+    public EventData GetRandomEvent(EventTypes type)
+    {
+        switch (type)
+        {
+            case EventTypes.BOSS_FIGHT:
+                return CreateEvent(bossFights);
+
+            case EventTypes.MERCHANT:
+                return CreateEvent(merchantEvent);
+
+            case EventTypes.MINIBOSS_FIGHT:
+                return CreateEvent(MiniBossFights);
+
+            case EventTypes.MISTERY:
+                return CreateEvent(misteryEvent);
+
+            case EventTypes.SENTINEL_FIGHT:
+                return CreateEvent(sentinelFights);
+
+            case EventTypes.TREASURE:
+                return CreateEvent(treasureEvent);
+        }
+
+        return null;
+    }
 }

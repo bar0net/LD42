@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour {
     const float _ENEMY_SEPARATION_ = 256;
+    const string _GAME_OVER_TEXT_ = "You find your demise by the hand of a {0} after reaching an insanity level of {1}\nEnemies killed: {2}\nItems collected: {3}\nEvents completed: {4}";
 
     [Header("Habilities UI Management")]
     public Transform abilityPanel;
@@ -16,16 +18,27 @@ public class Manager : MonoBehaviour {
     public Text abilityTooltipDamage;
     public Text abilityTooltipMagic;
     public Text abilityTooltipShield;
-
+    public Button endTurnButton;
 
     [Header("Card UI")]
     public RectTransform handPanel;
     public GameObject cardUI;
 
+
     [Header("Enemy UI")]
     public RectTransform enemiesPanel;
     public GameObject enemyPrefab;
 
+    [Header("Inventory UI")]
+    public GameObject inventoryUI;
+    public ItemTooltip inventoryTooltip;
+
+    [Header("End Battle UI")]
+    public GameObject winPanel;
+    public GameObject gameOverPanel;
+    public Text gameOverText;
+
+    [Space]
     // =================================
     // Cards currently on the draft pile
     [SerializeField]
@@ -42,7 +55,10 @@ public class Manager : MonoBehaviour {
 
     [HideInInspector]
     public Player player;
+
     List<Enemy> _enemies = new List<Enemy>();
+
+    [HideInInspector]
     public Enemy target;
 
     Queue<Character> turns = new Queue<Character>();
@@ -56,15 +72,13 @@ public class Manager : MonoBehaviour {
         player = FindObjectOfType<Player>();
 
         // Get and Display Enemies
-        if (_o.enemies.Length == 0)
+        if (_o.currentEvent == null)
         {
             Debug.LogWarning("[Manager::Start] No enemies in Overlord to populate fight.");
-            _o.enemies = _o.LoadFight(_o.sentinelFights);
+            _o.currentEvent = _o.CreateEvent(_o.sentinelFights);
         }
-        for (int i = 0; i < _o.enemies.Length; i++) CreateEnemy(i);
+        for (int i = 0; i < _o.currentEvent.enemies.Length; i++) CreateEnemy(i);
 
-        //player = FindObjectOfType<Player>();
-        //foreach (Enemy e in FindObjectsOfType<Enemy>()) _enemies.Add(e);
         SetTarget(_enemies[0]);
 
         foreach (Enemy e in _enemies) turns.Enqueue(e);
@@ -145,21 +159,62 @@ public class Manager : MonoBehaviour {
         }
     }
 
-    void DisplayInventory()
+    public void DisplayInventory()
     {
+        // Delete current children
+        for (int i = inventoryUI.transform.childCount - 1; i >= 0 ; i--)
+        {
+            Transform t = inventoryUI.transform.GetChild(i);
+            t.SetParent(null);
+            Destroy(t.gameObject);
+        }
 
+        foreach (Item item in _o.inventory) AddItemToInventory(item);
+    }
+
+    void AddItemToInventory(Item item)
+    {
+        GameObject go = new GameObject();
+        go.transform.SetParent(inventoryUI.transform);
+        go.transform.localScale = Vector3.one;
+
+        Image img = go.AddComponent<Image>();
+        img.sprite = item.artwork;
+        img.preserveAspect = true;
+
+        ItemDisplay id = go.AddComponent<ItemDisplay>();
+        id.item = item;
+        id.tooltip = inventoryTooltip;
     }
 
 
     public void EndTurn()
     {
+        // Break the cycle if the player is dead
+        if (player.health <= 0) return;
+
         // End current turn
-        if (turns.Peek() == player) DiscardAll();
+        if (turns.Peek() == player)
+        {
+            endTurnButton.interactable = false;
+            DiscardAll();
+        }
         turns.Enqueue(turns.Dequeue());
+
+        // Filter dead characters from the queue
+        for (int i = 0; i < turns.Count; i++)
+        {
+            if (turns.Peek().health <= 0) turns.Dequeue();
+            else break;
+        }
 
         // Start next turn
         turns.Peek().StartTurn();
-        if (turns.Peek() == player) Deal();
+        if (turns.Peek() == player)
+        {
+            endTurnButton.interactable = true;
+            Deal();
+        }
     }
 
     // Register Selected Tokens
@@ -244,6 +299,7 @@ public class Manager : MonoBehaviour {
     public void EnemyDefeated(Enemy e)
     {
         _enemies.Remove(e);
+        _o.enemiesKilled += 1;
 
         if (_enemies.Count == 0) Win(); 
         else SetTarget(_enemies[0]);
@@ -251,13 +307,17 @@ public class Manager : MonoBehaviour {
     
     public void Win()
     {
-        Debug.Log("GAME WON");
-        _o.enemyLevel += 1;
+        _o.enemyLevel -= 5;
+        if (_o.enemyLevel < 0) _o.enemyLevel = 0;
+
+        _o.eventsCompleted += 1;
+        winPanel.SetActive(true);
     }
 
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        gameOverText.text = string.Format(_GAME_OVER_TEXT_, turns.Peek().GetName(), _o.enemyLevel, _o.enemiesKilled, _o.itemsCollected, _o.eventsCompleted);
+        gameOverPanel.SetActive(true);
     }
 
     private void CreateEnemy(int i)
@@ -269,7 +329,7 @@ public class Manager : MonoBehaviour {
 
         Enemy e = go.GetComponent<Enemy>();
         e.level = _o.enemyLevel;
-        e.data = _o.enemies[i];
+        e.data = _o.currentEvent.enemies[i];
 
         // Set all enemy parameters here, else wrong parameters for the first turn.
         e.health = e.data.health + e.level * e.data.healthGrow;
@@ -278,5 +338,10 @@ public class Manager : MonoBehaviour {
         e.shieldRatio += Enemy._SHIELD_GRWOTH_ * e.level;
 
         _enemies.Add(e);
+    }
+
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }

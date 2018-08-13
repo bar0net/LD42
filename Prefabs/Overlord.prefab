@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4871818093089418}
   - component: {fileID: 114550827058627882}
+  - component: {fileID: 82908861808131152}
   m_Layer: 0
   m_Name: Overlord
   m_TagString: Untagged
@@ -34,12 +35,107 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087435337831752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 422.23587, y: 310.743, z: -2.417344}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82908861808131152
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087435337831752}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 080c22f0fc023c343a1495be7976de7b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114550827058627882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,27 +147,281 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bea8a0b21848f3478715294b3a6693d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesKilled: 0
+  eventsCompleted: 0
+  itemsCollected: 0
   enemyLevel: 1
   sentinelFights:
-  - minLevel: 0
-    maxLevel: 5
+  - type: 1
+    minLevel: 0
+    maxLevel: 20
     enemies:
     - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
-  - minLevel: 0
-    maxLevel: 5
+    rewards:
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 1
+    minLevel: 1
+    maxLevel: 50
     enemies:
     - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
     - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+  - type: 1
+    minLevel: 1
+    maxLevel: 50
+    enemies:
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: fa1c80097197019418c3d213c6eaaaf6, type: 2}
+    - {fileID: 11400000, guid: c979f471a9211a3479aebb3871c89aec, type: 2}
+    - {fileID: 11400000, guid: e001012aaa14ded46bfbd8fa8c6774f9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+  - type: 1
+    minLevel: 0
+    maxLevel: 50
+    enemies:
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+  - type: 1
+    minLevel: 30
+    maxLevel: 999999
+    enemies:
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+  - type: 1
+    minLevel: 30
+    maxLevel: 999999
+    enemies:
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 68517b6af6a30f5488f5a69fdaa45126, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+  - type: 1
+    minLevel: 30
+    maxLevel: 999999
+    enemies:
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: fa1c80097197019418c3d213c6eaaaf6, type: 2}
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: e001012aaa14ded46bfbd8fa8c6774f9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+  bossFights:
+  - type: 3
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies:
+    - {fileID: 11400000, guid: ee975655e0d45e042bb610e53e641967, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 3
+    minLevel: 50
+    maxLevel: 2147483647
+    enemies:
+    - {fileID: 11400000, guid: ee975655e0d45e042bb610e53e641967, type: 2}
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 3
+    minLevel: 100
+    maxLevel: 2147483647
+    enemies:
+    - {fileID: 11400000, guid: ee975655e0d45e042bb610e53e641967, type: 2}
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  MiniBossFights:
+  - type: 2
+    minLevel: 0
+    maxLevel: 50
+    enemies:
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 2
+    minLevel: 20
+    maxLevel: 100
+    enemies:
+    - {fileID: 11400000, guid: 2fb65d3efc528d94eb4f727bc0df8e96, type: 2}
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 2
+    minLevel: 50
+    maxLevel: 99999999
+    enemies:
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: c979f471a9211a3479aebb3871c89aec, type: 2}
+    - {fileID: 11400000, guid: 68517b6af6a30f5488f5a69fdaa45126, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 2
+    minLevel: 80
+    maxLevel: 99999999
+    enemies:
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  - type: 2
+    minLevel: 80
+    maxLevel: 99999999
+    enemies:
+    - {fileID: 11400000, guid: 3a0dade017d28e64c9e3cd05566e3607, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    - {fileID: 11400000, guid: be97cc84fd2222449a9940ffb4730945, type: 2}
+    rewards:
+    - {fileID: 11400000, guid: e001012aaa14ded46bfbd8fa8c6774f9, type: 2}
+    - {fileID: 11400000, guid: fa1c80097197019418c3d213c6eaaaf6, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+  merchantEvent:
+  - type: 6
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: e001012aaa14ded46bfbd8fa8c6774f9, type: 2}
+    - {fileID: 11400000, guid: 68517b6af6a30f5488f5a69fdaa45126, type: 2}
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+  - type: 6
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: c979f471a9211a3479aebb3871c89aec, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: fa1c80097197019418c3d213c6eaaaf6, type: 2}
+  treasureEvent:
+  - type: 4
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+    - {fileID: 11400000, guid: 08577162260cd054785d5f41e91079c7, type: 2}
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+  - type: 4
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: f4d66a0b24d0c7e408f8cdf8d90d1fc9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+  - type: 4
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: c979f471a9211a3479aebb3871c89aec, type: 2}
+    - {fileID: 11400000, guid: 68517b6af6a30f5488f5a69fdaa45126, type: 2}
+    - {fileID: 11400000, guid: e001012aaa14ded46bfbd8fa8c6774f9, type: 2}
+  - type: 4
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: bf4f18ca5d5c8004689054363639298b, type: 2}
+    - {fileID: 11400000, guid: 68517b6af6a30f5488f5a69fdaa45126, type: 2}
+    - {fileID: 11400000, guid: c979f471a9211a3479aebb3871c89aec, type: 2}
+  - type: 4
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards:
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 32a80213202c3ee4589877bf95826cb9, type: 2}
+    - {fileID: 11400000, guid: 88a68dbfcab44e643874136f21db3418, type: 2}
+    - {fileID: 11400000, guid: fa1c80097197019418c3d213c6eaaaf6, type: 2}
+    - {fileID: 11400000, guid: 28628ca8edb6ab643a92d92b5f72aa74, type: 2}
+  misteryEvent:
+  - type: 5
+    minLevel: 0
+    maxLevel: 2147483647
+    enemies: []
+    rewards: []
   collection:
   - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
   - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
   - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
   - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
   - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
+  - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
+  - {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
   - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}
   - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}
   - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}
   - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}
   - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}
-  cardsToDeal: 5
-  enemies: []
+  cardsToDeal: 6
+  inventorySlots: 7
+  inventory: []
+  currentEvent:
+    type: 0
+    minLevel: 0
+    maxLevel: 0
+    enemies: []
+    rewards: []

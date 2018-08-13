@@ -18,7 +18,7 @@ MonoBehaviour:
   - type: 0
     value: 1
   - type: 1
-    value: 3
+    value: 2
   damage: 10
   magic: 0
-  defense: 25
+  defense: 10

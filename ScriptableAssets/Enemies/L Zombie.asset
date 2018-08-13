@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae9d1b0b928ae5428c9adf9170e2628, type: 3}
+  m_Name: L Zombie
+  m_EditorClassIdentifier: 
+  name: Zombie
+  description: 
+  artwork: {fileID: 21300006, guid: 6cc51bffcae356746ac4fdb3bc128605, type: 3}
+  health: 200
+  strength: 10
+  energy: 10
+  healthGrow: 5
+  strengthGrow: 3
+  energyGrow: 1
+  abilities:
+  - {fileID: 11400000, guid: bba9fb0ba3c35e8498e219c8f99f3807, type: 2}
+  - {fileID: 11400000, guid: bba9fb0ba3c35e8498e219c8f99f3807, type: 2}
+  - {fileID: 11400000, guid: c08aed0ce65d50245b909c520ac4994c, type: 2}
+  - {fileID: 11400000, guid: c08aed0ce65d50245b909c520ac4994c, type: 2}
+  - {fileID: 11400000, guid: 3337d80289aa1ad499c776c5e1489f22, type: 2}

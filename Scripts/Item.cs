@@ -8,7 +8,7 @@ public class Item : ScriptableObject {
     public string description;
     public Sprite artwork;
     public int cost;
-    public ItemEffect_Stats[] stats;
+    public ItemEffect_Stats stats;
     public ItemEffect_Ability[] abilities;
     public Card[] cards;
 }

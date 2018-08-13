@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Name: cutlass
   m_EditorClassIdentifier: 
   name: Cutlass
-  description: This small and swift blade allows you to parry attacks
-  artwork: {fileID: 0}
+  description: This small and swift blade allows you to parry attacks.
+  artwork: {fileID: 21300008, guid: a3206a799722f8941b759e883cdfa0bb, type: 3}
   cost: 20
-  stats: []
+  stats:
+    health: 0
+    strength: 0
+    endurance: 0
+    energy: 0
+    resilience: 0
   abilities:
   - ability: {fileID: 11400000, guid: 60356c0edb2b23345aa2d583a2013956, type: 2}
   cards:

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae9d1b0b928ae5428c9adf9170e2628, type: 3}
-  m_Name: Ghoul
+  m_Name: S Ghoul
   m_EditorClassIdentifier: 
   name: Ghoul
   description: 
-  artwork: {fileID: 21300000, guid: 0e83abd10538fc8458164d86a92c9aeb, type: 3}
+  artwork: {fileID: 21300002, guid: 6cc51bffcae356746ac4fdb3bc128605, type: 3}
   health: 100
   strength: 5
   energy: 5

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: torned robe
   m_EditorClassIdentifier: 
   name: Torned Robe
-  description: It's not chic, but you feel at ease wearing it.
-  artwork: {fileID: 0}
+  description: It's not chic, but you feel at ease wearing it. It absorbs 5 points
+    of incoming magical damage.
+  artwork: {fileID: 21300018, guid: a3206a799722f8941b759e883cdfa0bb, type: 3}
   cost: 10
   stats:
-  - health: 0
+    health: 0
     strength: 0
     endurance: 0
     energy: 0

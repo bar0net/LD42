@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: shield
   m_EditorClassIdentifier: 
   name: Shield
-  description: A piece of metal to fend off enemy attacks
-  artwork: {fileID: 0}
+  description: A piece of metal to fend off enemy attacks. Reduces the incoming physical
+    damage by 5.
+  artwork: {fileID: 21300014, guid: a3206a799722f8941b759e883cdfa0bb, type: 3}
   cost: 10
   stats:
-  - health: 0
+    health: 0
     strength: 0
     endurance: 5
     energy: 0
