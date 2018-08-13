@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd44c6cb9840a694c93cf4d1007f519c, type: 3}
+  m_Name: torned robe
+  m_EditorClassIdentifier: 
+  name: Torned Robe
+  description: It's not chic, but you feel at ease wearing it.
+  artwork: {fileID: 0}
+  cost: 10
+  stats:
+  - health: 0
+    strength: 0
+    endurance: 0
+    energy: 0
+    resilience: 5
+  abilities: []
+  cards:
+  - {fileID: 11400000, guid: a76546672b1eb344cba15b6b29cf6fa5, type: 2}
+  - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}

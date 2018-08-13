@@ -6,14 +6,16 @@ using UnityEngine;
 public class EnemyData : ScriptableObject {
     public new string name;
     public string description;
+    public Sprite artwork;
 
     public int health = 100;
 
     public int strength = 10;
-    public int endurance = 10;
     public int energy = 10;
-    public int resilience = 10;
 
-    public List<Hability> habilities;
-    public List<Card> cards;
+    public int healthGrow = 5;
+    public int strengthGrow = 2;
+    public int energyGrow = 1;
+
+    public List<Ability> abilities;
 }

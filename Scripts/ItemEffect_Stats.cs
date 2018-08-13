@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemEffect_Stats : ItemEffect {
     public int health = 0;
     public int strength = 0;

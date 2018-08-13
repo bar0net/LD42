@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd44c6cb9840a694c93cf4d1007f519c, type: 3}
+  m_Name: charm
+  m_EditorClassIdentifier: 
+  name: Charm
+  description: This ancient charm seems to have some protective properties.
+  artwork: {fileID: 21300000, guid: 718315d3651fa304b8969c5b4330097f, type: 3}
+  cost: 20
+  stats: []
+  abilities:
+  - ability: {fileID: 11400000, guid: adcbbd411adfcba469546cd84af9b6e6, type: 2}
+  cards:
+  - {fileID: 11400000, guid: a76546672b1eb344cba15b6b29cf6fa5, type: 2}
+  - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}
+  - {fileID: 11400000, guid: 520b3f63f20002f438825034a5248ae1, type: 2}

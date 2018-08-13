@@ -43,6 +43,11 @@ MonoBehaviour:
   card: {fileID: 11400000, guid: 357c42fed18f4504db2857525e83678d, type: 2}
   targetPos: {x: 0, y: 0, z: 0}
   moving: 1
+  swordValue: 0
+  shieldValue: 0
+  regularColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 1, b: 0.6933962, a: 1}
 --- !u!114 &114721148928008612
 MonoBehaviour:
   m_ObjectHideFlags: 1

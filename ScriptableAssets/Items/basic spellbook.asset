@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd44c6cb9840a694c93cf4d1007f519c, type: 3}
+  m_Name: basic spellbook
+  m_EditorClassIdentifier: 
+  name: Basic spellbook
+  description: It helps channel your inner power to cast orbs.
+  artwork: {fileID: 0}
+  cost: 20
+  stats: []
+  abilities:
+  - ability: {fileID: 11400000, guid: fe3916faea3a33744987bd71c5be6db9, type: 2}
+  cards:
+  - {fileID: 11400000, guid: a76546672b1eb344cba15b6b29cf6fa5, type: 2}
+  - {fileID: 11400000, guid: a76546672b1eb344cba15b6b29cf6fa5, type: 2}
+  - {fileID: 11400000, guid: a76546672b1eb344cba15b6b29cf6fa5, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   cardName: Attack
-  description: 
+  description: Adds one attack token.
   artwork: {fileID: 21300000, guid: 488a759b3e246c04a938b8151af04a84, type: 3}
   Background: {fileID: 0}
-  atack: 1
-  defense: 0
-  occult: 0
+  tokenValues:
+  - type: 0
+    value: 1
