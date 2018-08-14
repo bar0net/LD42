@@ -14,12 +14,12 @@ MonoBehaviour:
   name: Blob
   description: 
   artwork: {fileID: 21300010, guid: 6cc51bffcae356746ac4fdb3bc128605, type: 3}
-  health: 120
+  health: 80
   strength: 1
-  energy: 5
+  energy: 2
   healthGrow: 5
   strengthGrow: 1
-  energyGrow: 3
+  energyGrow: 2
   abilities:
   - {fileID: 11400000, guid: fe3916faea3a33744987bd71c5be6db9, type: 2}
   - {fileID: 11400000, guid: bba9fb0ba3c35e8498e219c8f99f3807, type: 2}

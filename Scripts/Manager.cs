@@ -111,7 +111,7 @@ public class Manager : MonoBehaviour {
         DiscardAll();
 
         // Deal the required number of cards to hand
-        for (int i = 0; i < _o.cardsToDeal; i++)
+        for (int i = 0; i < _o.cardsToDeal + (int)(_o.eventsCompleted / 5); i++)
         {
             // If pile is empty, reshuffle the discard pile and continue
             if (pile.Count == 0)
@@ -293,7 +293,15 @@ public class Manager : MonoBehaviour {
 
     public void SetTarget(Enemy e)
     {
+        if (target != null)
+        {
+            target.OutlineConfig(false, Color.white);
+            target.selected = false;
+        }
+
         target = e;
+        e.selected = true;
+        e.OutlineConfig(true, Color.gray);
     }
 
     public void EnemyDefeated(Enemy e)

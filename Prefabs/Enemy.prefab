@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0.95224696, b: 0, a: 0.5}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
 --- !u!114 &114381227511968076
@@ -267,6 +267,8 @@ MonoBehaviour:
   actionDisplay: {fileID: 114381227511968076}
   data: {fileID: 0}
   level: 1
+  selected: 0
+  outline: {fileID: 114299039222162394}
 --- !u!114 &114526496851167744
 MonoBehaviour:
   m_ObjectHideFlags: 1

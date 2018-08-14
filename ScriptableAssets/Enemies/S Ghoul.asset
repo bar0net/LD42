@@ -15,9 +15,9 @@ MonoBehaviour:
   description: 
   artwork: {fileID: 21300002, guid: 6cc51bffcae356746ac4fdb3bc128605, type: 3}
   health: 100
-  strength: 5
-  energy: 5
-  healthGrow: 5
+  strength: 2
+  energy: 3
+  healthGrow: 4
   strengthGrow: 2
   energyGrow: 1
   abilities:

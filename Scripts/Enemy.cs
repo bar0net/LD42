@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Enemy : Character, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-    public const float _SHIELD_GRWOTH_ = 0.12f;
+    public const float _SHIELD_GRWOTH_ = 0.05f;
     public const float _LEVEL_RATIO_ = 0.1f;
     const float _WAIT_TIME_ = 0.5f;
 
@@ -15,21 +15,26 @@ public class Enemy : Character, IPointerEnterHandler, IPointerExitHandler, IPoin
     public EnemyData data;
     public int level = 1;
 
+    [HideInInspector]
+    public bool selected = false;
+    
     Player _p;
     Manager _m;
-    Outline _out;
+    public Outline outline;
 
     Ability next = null;
     System.Random rng = new System.Random(System.DateTime.Now.Millisecond);
 
     float waitTime = 0;
+    bool started = false;
 
     protected override void Start()
     {
+        started = true;
         _m = FindObjectOfType<Manager>();
         _p = FindObjectOfType<Player>();
-        _out = this.GetComponentInChildren<Outline>();
-        _out.enabled = false;
+        // outline = this.GetComponentInChildren<Outline>();
+        outline.enabled = selected;
 
         this.health = (int)(data.health + _LEVEL_RATIO_ * level * data.healthGrow);
         this.strength = (int)(data.strength + _LEVEL_RATIO_ * level * data.strengthGrow);
@@ -43,7 +48,10 @@ public class Enemy : Character, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public override void StartTurn()
     {
+        if (!started) Start();
+
         waitTime = _WAIT_TIME_;
+        shield = 0;
 
         if (next != null) ActivateAbility(next, _m.player);
         else
@@ -97,19 +105,31 @@ public class Enemy : Character, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerEnter(PointerEventData e)
     {
-        _out.enabled = true;
+        if (selected) return;
+
+        outline.enabled = true;
     }
 
     public void OnPointerExit(PointerEventData e)
     {
-        //if (_m.target = this) return;
+        if (selected) return;
 
-        _out.enabled = false;
+        outline.enabled = false;
     }
 
 
     public void OnPointerClick(PointerEventData e)
     {
-        
+        _m.SetTarget(this);
+    }
+
+    public void OutlineConfig(bool enabled, Color color)
+    {
+        if (outline == null) this.GetComponentInChildren<Outline>();
+
+        outline.effectColor = color;
+        outline.enabled = enabled;
     }
 }
+
+
